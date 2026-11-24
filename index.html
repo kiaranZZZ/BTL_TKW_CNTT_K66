@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WMS Logistics – Quản lý kho và theo dõi vận đơn</title>
+  <meta name="description" content="Web quản lý kho và theo dõi vận đơn cho doanh nghiệp nhỏ: nhập xuất kho, phân công tài xế, tra cứu hành trình bằng mã vận đơn.">
+  <meta name="theme-color" content="#1d4ed8">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <noscript>Trang web cần bật JavaScript để hoạt động.</noscript>
+  <div id="app"></div>
+
+  <!-- Thứ tự nạp quan trọng: cấu hình → dữ liệu → giao diện → router → các trang → khởi động -->
+  <script src="js/vendor/qrcode.min.js" defer></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/seed.js" defer></script>
+  <script src="js/store.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/router.js" defer></script>
+  <script src="js/pages/public.js" defer></script>
+  <script src="js/pages/catalog.js" defer></script>
+  <script src="js/pages/warehouse.js" defer></script>
+  <script src="js/pages/shipping.js" defer></script>
+  <script src="js/pages/admin.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

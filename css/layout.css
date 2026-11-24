@@ -1,0 +1,89 @@
+/* Bố cục: header, sidebar, vùng nội dung, lưới (Flexbox + CSS Grid) */
+.topbar {
+  position: sticky; top: 0; z-index: 30;
+  height: var(--header-h);
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: 0 var(--sp-4);
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-border);
+}
+.topbar__brand {
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-weight: 800; color: var(--c-primary-dark); text-decoration: none; font-size: 1.1rem;
+}
+.topbar__brand { white-space: nowrap; }
+.topbar .btn { white-space: nowrap; }
+.topbar__brand img { width: 34px; height: 34px; }
+.topbar__brand span em { color: var(--c-accent); font-style: normal; }
+.topbar__nav { display: flex; gap: var(--sp-1); margin-left: var(--sp-4); }
+.topbar__link {
+  padding: var(--sp-2) var(--sp-3); border-radius: var(--radius);
+  color: var(--c-muted); text-decoration: none; font-weight: 600;
+}
+.topbar__link:hover, .topbar__link--active { background: var(--c-primary-soft); color: var(--c-primary-dark); }
+.topbar__spacer { flex: 1; }
+.topbar__tools { display: flex; align-items: center; gap: var(--sp-2); position: relative; }
+.topbar__menu-btn { display: none; }
+
+/* Dropdown (chuông thông báo, menu người dùng) */
+.dropdown {
+  position: absolute; top: calc(100% + 8px); right: 0; width: min(340px, 92vw);
+  background: var(--c-surface); border: 1px solid var(--c-border);
+  border-radius: var(--radius); box-shadow: var(--shadow-md);
+  max-height: 70vh; overflow: auto; z-index: 40;
+}
+.dropdown__item { display: block; padding: var(--sp-3); border-bottom: 1px solid var(--c-border); font-size: var(--fs-sm); }
+.dropdown__item:last-child { border-bottom: 0; }
+.dropdown__item--unread { background: var(--c-primary-soft); }
+.dropdown__head { padding: var(--sp-3); font-weight: 700; border-bottom: 1px solid var(--c-border); }
+
+.shell { display: flex; min-height: calc(100vh - var(--header-h)); }
+.sidebar {
+  width: var(--sidebar-w); flex: none;
+  background: var(--c-surface); border-right: 1px solid var(--c-border);
+  padding: var(--sp-4) var(--sp-3);
+}
+.sidebar__title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-muted); margin: var(--sp-3) var(--sp-2); }
+.sidebar__link {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3); margin-bottom: 2px;
+  border-radius: var(--radius); color: var(--c-text); text-decoration: none; font-weight: 500;
+}
+.sidebar__link:hover { background: var(--c-bg); }
+.sidebar__link--active { background: var(--c-primary); color: #fff; }
+.main { flex: 1; min-width: 0; padding: var(--sp-5); }
+.main--public { max-width: 1100px; margin: 0 auto; width: 100%; }
+
+.page-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--sp-3); margin-bottom: var(--sp-5); }
+.page-head h1 { margin: 0; }
+.page-head__actions { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+
+.grid { display: grid; gap: var(--sp-4); }
+.grid--kpi { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.footer { padding: var(--sp-5); text-align: center; color: var(--c-muted); font-size: var(--fs-sm); }
+.overlay { display: none; }
+
+/* ---------- Tablet & mobile ---------- */
+@media (max-width: 960px) {
+  .grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sidebar {
+    position: fixed; top: var(--header-h); bottom: 0; left: 0; z-index: 35;
+    transform: translateX(-100%); transition: transform 0.2s; overflow-y: auto;
+  }
+  .sidebar--open { transform: none; box-shadow: var(--shadow-md); }
+  .overlay--open { display: block; position: fixed; inset: var(--header-h) 0 0 0; background: rgba(15, 23, 42, 0.4); z-index: 34; }
+  .topbar__menu-btn { display: inline-flex; }
+}
+@media (max-width: 720px) {
+  .main { padding: var(--sp-4); }
+  .grid--2, .grid--3 { grid-template-columns: minmax(0, 1fr); }
+  .topbar__nav { display: none; }
+  .topbar__nav--open {
+    display: flex; flex-direction: column; position: absolute; top: var(--header-h); left: 0; right: 0;
+    margin: 0; padding: var(--sp-3); background: var(--c-surface); border-bottom: 1px solid var(--c-border); box-shadow: var(--shadow-md);
+  }
+  .topbar__brand span { font-size: 1rem; }
+  .hide-sm { display: none !important; }
+}
